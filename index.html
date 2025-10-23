@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Ahmad Edo Prayoga</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <h2>Selamat Datang 👋</h2>
+      <p>Silakan masuk ke akun Anda</p>
+
+      <form onsubmit="return validateLogin()">
+        <div class="input-group">
+                <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Masukkan username" required>
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Masukkan password" required>
+        </div>
+        <button type="submit" class="btn-login">Masuk</button>
+        <p class="signup-text">Belum punya akun? <a href="#">Daftar di sini</a></p>
+    </form>
+    <script>
+  function validateLogin() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+  
+    if (username === "admin" && password === "12345") {
+      window.location.href = "home.html"; 
+      return false; 
+    } else {
+      alert("Username atau password salah!");
+      return false;
+    }
+  }
+</script>
+
+   </div>
+</body>
+</html>
