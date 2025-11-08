@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Ahmad Edo Prayoga</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-image"></div>
+  <div class="login-container">
+    <div class="login-box">
+      <h2>Selamat Datang 👋</h2>
+      <p>Silakan masuk ke akun Anda</p>
+
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Masukkan username" required>
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Masukkan password" required>
+        </div>
+        <button type="submit" class="btn-login">Masuk</button>
+        <p class="signup-text">Belum punya akun? <a href="register.html">Daftar di sini</a></p>
+      </form>
+    </div>
+  </div>
+  
+  <audio id="bgMusic" autoplay loop>
+    <source src="Café Crème.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung pemutar audio.
+  </audio>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username, password })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+          window.location.href = 'home.html';
+        } else {
+          alert(data.error || 'Login gagal');
+        }
+      } catch (error) {
+        alert('Terjadi kesalahan. Silakan coba lagi.');
+        console.error('Error:', error);
+      }
+    });
+  </script>
+</body>
+</html>
